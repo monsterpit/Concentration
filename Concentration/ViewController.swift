@@ -14,34 +14,43 @@ import UIKit
 //UIViewController Consist of logic of controlling all UI Elements so when we extend this superclass we dont have to worry about controlling of UI
 class ViewController: UIViewController {
     
-    // instance variable / property
-   // var flipCount : Int = 0
-    
-    // instance variable / property
-    //Property Observer observes changes to the property
-    // code after property everytime the property value is changed is called property observer
-    //we use property observer alot to keep ui in sync with property changes
     var flipCount : Int = 0 {
         didSet{
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
     
+    //Outlet Collection
+    // array are generic type
+    // @IBOutlet var cardButons: Array<UIButton>!
     
+    // Cmd + left click to rename vaiables names
+    @IBOutlet var cardButtons: [UIButton]!    
     
     @IBOutlet weak var flipCountLabel: UILabel!
     
+    var emojiChoices : Array<String> = ["👻","🎃","👻","🎃"]
+    
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount+=1
-        flipCard(withEmoji: "👻", on: sender)
+        
+        //Variable 'cardNumber' was never mutated; consider changing to 'let' constant
+        //Thread 1: Fatal error: Unexpectedly found nil while unwrapping an Optional value
+        // if let to safely unwrap an Optional
+        if let cardNumber = cardButtons.index(of:sender){
+           // print("cardNumber = \(cardNumber)")
+            flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
+        }
+        else{
+            print("Choose cards was not in the list")
+        }
+        
+        //String interpolation produces a debug description for an optional value; did you mean to make this explicit?
+        // optional get value optional(int) if no value tehn nil
+      //  print("cardNumber = \(cardNumber)")
     }
-    @IBAction func touchSecondCard(_ sender: UIButton) {
-        flipCount+=1
-        flipCard(withEmoji: "🎃", on: sender)
-    }
-    
+
     func flipCard(withEmoji emoji : String,on button : UIButton){
-      //  print("flipCard(withEmoji : \(emoji))")
         if button.currentTitle == emoji{
             button.setTitle("", for: .normal)
             button.backgroundColor = #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
