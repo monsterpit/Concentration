@@ -19,7 +19,12 @@ class Concentration
     var cards = [Card]()
     
     func chooseCard(at index : Int){
-        
+        if cards[index].isFaceUp{
+            cards[index].isFaceUp = false
+        }
+        else{
+            cards[index].isFaceUp = true
+        }
     }
     
     // we are having init has we want to create game based on number of cards 
@@ -28,8 +33,10 @@ class Concentration
         //  let card = Card(isFaceUp: false, isMatched: false, identifier: identifier)
         
         //array,string,countable range are examples of sequence
-        for identifier in 1...numberOfPairsOfCards{
-            let card = Card(identifier : identifier)
+        for _ in 1...numberOfPairsOfCards{
+            // let card = Card(identifier : identifier)
+            let card = Card()
+            
             
             //let matchingCard = Card(identifier : identifier)
             // as struct copies
@@ -38,10 +45,12 @@ class Concentration
             //        cards.append(matchingCard)
             
             // because putting things in array also makes a copy
-//            cards.append(card)
-//            cards.append(card)
+            //            cards.append(card)
+            //            cards.append(card)
             
-          cards += [card,card]
+            cards += [card,card]
         }
+        
+        //TODO: Shuffle the cards
     }
 }

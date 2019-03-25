@@ -17,8 +17,20 @@ struct Card{
     var isMatched = false
     var identifier : Int
     
+    static var identifierFactory = 0
+    
+    //Static Methods are sent to Type
+    static func getUniqueIdentifier() -> Int {
+       // dont need to type Card as we are in Type Card
+        //Card.identifierFactory+=1
+        identifierFactory+=1
+        return identifierFactory
+    }
+    
+    
+    
     //init tends to have same external and internal names
-    init(identifier : Int){
-        self.identifier = identifier
+    init(){
+        self.identifier = Card.getUniqueIdentifier()
     }
 }
