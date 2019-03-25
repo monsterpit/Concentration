@@ -15,18 +15,28 @@ import UIKit
 class ViewController: UIViewController {
     
     // instance variable / property
-    var flipCount : Int = 0
+   // var flipCount : Int = 0
+    
+    // instance variable / property
+    //Property Observer observes changes to the property
+    // code after property everytime the property value is changed is called property observer
+    //we use property observer alot to keep ui in sync with property changes
+    var flipCount : Int = 0 {
+        didSet{
+            flipCountLabel.text = "Flips: \(flipCount)"
+        }
+    }
+    
+    
     
     @IBOutlet weak var flipCountLabel: UILabel!
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount+=1
-        flipCountLabel.text = "Flips: \(flipCount)"
         flipCard(withEmoji: "👻", on: sender)
     }
     @IBAction func touchSecondCard(_ sender: UIButton) {
         flipCount+=1
-        flipCountLabel.text = "Flips: \(flipCount)"
         flipCard(withEmoji: "🎃", on: sender)
     }
     
