@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var flipCountLabel: UILabel!
     
-    var emojiChoices : Array<String> = ["👻","🎃","👻","🎃"]
+
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount+=1
@@ -56,6 +56,8 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    var emojiChoices = ["👻","🎃","👻","🎃"]
     
     func emoji(for card : Card)-> String{
         return "?"
