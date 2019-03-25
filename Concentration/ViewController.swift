@@ -19,12 +19,7 @@ class ViewController: UIViewController {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
-    
-    //Outlet Collection
-    // array are generic type
-    // @IBOutlet var cardButons: Array<UIButton>!
-    
-    // Cmd + left click to rename vaiables names
+
     @IBOutlet var cardButtons: [UIButton]!    
     
     @IBOutlet weak var flipCountLabel: UILabel!
@@ -33,21 +28,15 @@ class ViewController: UIViewController {
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount+=1
-        
-        //Variable 'cardNumber' was never mutated; consider changing to 'let' constant
-        //Thread 1: Fatal error: Unexpectedly found nil while unwrapping an Optional value
-        // if let to safely unwrap an Optional
+
         if let cardNumber = cardButtons.index(of:sender){
-           // print("cardNumber = \(cardNumber)")
+
             flipCard(withEmoji: emojiChoices[cardNumber], on: sender)
         }
         else{
             print("Choose cards was not in the list")
         }
-        
-        //String interpolation produces a debug description for an optional value; did you mean to make this explicit?
-        // optional get value optional(int) if no value tehn nil
-      //  print("cardNumber = \(cardNumber)")
+
     }
 
     func flipCard(withEmoji emoji : String,on button : UIButton){
