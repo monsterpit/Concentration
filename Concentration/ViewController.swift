@@ -54,7 +54,16 @@ class ViewController: UIViewController {
                 button.setTitle("", for: .normal)
                 button.backgroundColor = card.isMatched ?  #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) :  #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
             }
+            
+            // MARK:- Crash App
+//            if index > Int(arc4random_uniform(UInt32(100))){
+//                exit(-1)
+//            }
         }
+        
+
+
+
     }
     
     var emojiChoices = ["👻","🎃","😈","🍭","😱","🙀","🍎","🦇"]

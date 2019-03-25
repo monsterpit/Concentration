@@ -45,8 +45,10 @@ class Concentration
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
-        
+
     }
+    
+ 
     
     init(numberOfPairsOfCards : Int){
         for _ in 1...numberOfPairsOfCards{
