@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var flipCountLabel: UILabel!
     
-
+    
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount+=1
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     
     
     func updateViewFromModel(){
-
+        
         for index in cardButtons.indices
         {
             let button = cardButtons[index]
@@ -57,10 +57,41 @@ class ViewController: UIViewController {
         }
     }
     
-    var emojiChoices = ["👻","🎃","👻","🎃"]
+    var emojiChoices = ["👻","🎃","😈","🍭","😱","🙀","🍎","🦇"]
+    
+    //   var emoji = Dictionary<Int,String>()
+    var emoji = [Int:String]()
     
     func emoji(for card : Card)-> String{
-        return "?"
+//        if emoji[card.identifier] != nil{
+//            return emoji[card.identifier]!
+//        }
+//        else{
+//            return "?"
+//        }
+        
+//        if emoji[card.identifier] == nil{
+//            if emojiChoices.count>0{
+//            // Type conversion UInt32 is also a struct it has init
+//            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+//           // emoji[card.identifier] = emojiChoices[randomIndex]
+//            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+//        }
+//        }
+        
+        
+        // back to back if in same line by ","
+        if emoji[card.identifier] == nil, emojiChoices.count>0{
+                // Type conversion UInt32 is also a struct it has init
+                let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+                // emoji[card.identifier] = emojiChoices[randomIndex]
+                emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
+        }
+        
+        
+        
+        // nil coalescing
+        return emoji[card.identifier] ?? "?"
     }
     
 }
