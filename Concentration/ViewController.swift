@@ -8,15 +8,9 @@
 
 import UIKit
 
-// MVC
-// Model : what your application is (but not how it is displyed)
-// Controller : how your model is presented to the user (UI logic)
-// View : Your Controller's minions (very generic like UIButton,UIView,etc.)
-// delegate is set via a protocol (i.e. its "blind" to class)
-// view do not own the data they display
-//controller are almost always that data source (not Model)
-//Controller intrepret/format Model information for the view
 class ViewController: UIViewController {
+    
+    var game = Concentration(numberOfPairsOfCards: 2)
     
     var flipCount : Int = 0 {
         didSet{
