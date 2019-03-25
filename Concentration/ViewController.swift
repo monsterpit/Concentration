@@ -10,8 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    //Cannot use instance member 'cardButtons' within property initializer; property initializers run before 'self' is available
-    // lazy cant have property observers
     lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count+1)/2)
     
     var flipCount : Int = 0 {
@@ -43,8 +41,7 @@ class ViewController: UIViewController {
     
     
     func updateViewFromModel(){
-        //   for button in cardButtons{
-        //  for index in 1..<cardButtons.count{
+
         for index in cardButtons.indices
         {
             let button = cardButtons[index]
