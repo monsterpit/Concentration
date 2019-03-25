@@ -5,13 +5,17 @@
 //  Created by MB on 3/25/19.
 //  Copyright © 2019 MB. All rights reserved.
 //
-// Swift is Strongly typed And Stongly Inferred Language
-//UIKit consist of all UI Elements like UIButton
+
 import UIKit
 
-//IBAction creates a method
-//IBOutlet Creates and instance variable
-//UIViewController Consist of logic of controlling all UI Elements so when we extend this superclass we dont have to worry about controlling of UI
+// MVC
+// Model : what your application is (but not how it is displyed)
+// Controller : how your model is presented to the user (UI logic)
+// View : Your Controller's minions (very generic like UIButton,UIView,etc.)
+// delegate is set via a protocol (i.e. its "blind" to class)
+// view do not own the data they display
+//controller are almost always that data source (not Model)
+//Controller intrepret/format Model information for the view
 class ViewController: UIViewController {
     
     var flipCount : Int = 0 {
