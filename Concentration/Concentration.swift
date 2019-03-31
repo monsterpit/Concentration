@@ -42,7 +42,10 @@ class Concentration
         }
     }
     
-    private func chooseCard(at index : Int){
+     func chooseCard(at index : Int){
+        //MARK:- Assert
+        assert(cards.indices.contains(index),"Concentration.chooseCard(at \(index)): choosen index not in the cards")
+        
         //checking if cards aint matched
         if !cards[index].isMatched{
             
@@ -67,6 +70,9 @@ class Concentration
  
     // initializer can also be made private but we need it to creates array of cards to let it be as it is
     init(numberOfPairsOfCards : Int){
+        
+        assert(numberOfPairsOfCards>0,"Concentration.init(\(numberOfPairsOfCards)) : you must have atleast one pair of cards")
+        
         for _ in 1...numberOfPairsOfCards{
             
             let card = Card()
