@@ -5,7 +5,8 @@
 //  Created by MB on 3/25/19.
 //  Copyright © 2019 MB. All rights reserved.
 //
-
+// if we are doing lots of work then create a function instead of computed property
+// else use it as its lightweight property
 import Foundation
 
 
@@ -13,7 +14,34 @@ class Concentration
 {
     var cards = [Card]()
     
-    var indexOfOneAndOnlyFaceUpCard : Int?
+    //Computed Property with get and set
+    var indexOfOneAndOnlyFaceUpCard : Int?{
+        get{
+            var foundIndex : Int?
+            for index in cards.indices{
+                //checking  if any cards is faceUp and for 2 or 0 cards face up it returns nil else it returns index
+                if cards[index].isFaceUp {
+                    if foundIndex == nil{
+                        foundIndex = index
+                    }
+                    else{
+                        foundIndex = nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        // if you dont do set(newValue) the local Variable for set default to "newValue"
+       // set(newValue){
+        // local variable name is upon you to choose
+        // set(index){
+          set{
+            // turning all cards face down when indexOfOneAndOnlyFaceUpCard is set excluding the card that is selected
+            for index in cards.indices{
+                cards[index].isFaceUp = (index==newValue)
+            }
+        }
+    }
     
     func chooseCard(at index : Int){
         //checking if cards aint matched
@@ -30,17 +58,19 @@ class Concentration
                 cards[index].isFaceUp = true
                 
                 //setting indexOfOneAndOnlyFaceUpCard to nil as 2 cards are up now
-                indexOfOneAndOnlyFaceUpCard = nil
+                // we dont need it anymore as it is taken care in get of computed property of indexOfOneAndOnlyFaceUpCard
+                //indexOfOneAndOnlyFaceUpCard = nil
             }
             else{
                 // either no cards or 2 cards are faceup
-                for flipDownIndex in cards.indices{
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                
-                // flipping selected card up
-                cards[index].isFaceUp = true
-                
+//                for flipDownIndex in cards.indices{
+//                    cards[flipDownIndex].isFaceUp = false
+//                }
+//
+//                // flipping selected card up
+//                cards[index].isFaceUp = true
+//
+// we dont need above code Has now setting indexOfOneAndOnlyFaceUpCard does this in its computed property set
                 // setting indexOfOneAndOnlyFaceUpCard to indexd of card
                 indexOfOneAndOnlyFaceUpCard = index
             }

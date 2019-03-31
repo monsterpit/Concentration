@@ -10,7 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count+1)/2)
+    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    
+    //Computed property can be only get only below is the example
+    var numberOfPairsOfCards : Int {
+        return (cardButtons.count+1)/2
+    }
     
     var flipCount : Int = 0 {
         didSet{
