@@ -10,26 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+    // Model are generally public but here its private as it is dependent on numberOfPairsOfCards which has cardButtons aint public and is done in Interface Builder
+    private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     
-    //Computed property can be only get only below is the example
     var numberOfPairsOfCards : Int {
         return (cardButtons.count+1)/2
     }
     
-    var flipCount : Int = 0 {
+    // as we dont want anyone to set flipcount but surely can see what its value is
+    private(set) var flipCount : Int = 0 {
         didSet{
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
+    //IBOutlets and IBActions are generally private as they are internal implementations of UI thats what viewcontoller does
+    @IBOutlet private var cardButtons: [UIButton]!
     
-    @IBOutlet var cardButtons: [UIButton]!    
-    
-    @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel!
     
     
     
-    @IBAction func touchCard(_ sender: UIButton) {
+    @IBAction private func touchCard(_ sender: UIButton) {
         flipCount+=1
         
         if let cardNumber = cardButtons.index(of:sender){
@@ -44,8 +45,8 @@ class ViewController: UIViewController {
         
     }
     
-    
-    func updateViewFromModel(){
+    // will be private as its logic on how to udate view
+    private func updateViewFromModel(){
         
         for index in cardButtons.indices
         {
@@ -70,12 +71,13 @@ class ViewController: UIViewController {
 
 
     }
+    // making private and theen thinking what should be private or not for future implemenation
+    // all emoji stuffs are private but we can have emoji public API to have control on what to display
+    private var emojiChoices = ["👻","🎃","😈","🍭","😱","🙀","🍎","🦇"]
     
-    var emojiChoices = ["👻","🎃","😈","🍭","😱","🙀","🍎","🦇"]
+    private var emoji = [Int:String]()
     
-    var emoji = [Int:String]()
-    
-    func emoji(for card : Card)-> String{
+    private func emoji(for card : Card)-> String{
 
         if emoji[card.identifier] == nil, emojiChoices.count>0{
 

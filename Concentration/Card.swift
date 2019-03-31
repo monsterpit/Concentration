@@ -13,14 +13,17 @@ import Foundation
 //struct also gets a free init but it initializes each and every instance variables
 
 struct Card{
+    
+    // definitely public as we want to now property or state of card
     var isFaceUp = false
     var isMatched = false
     var identifier : Int
     
-    static var identifierFactory = 0
+    // private as identifier is internal implementation
+    private static var identifierFactory = 0
     
     //Static Methods are sent to Type
-    static func getUniqueIdentifier() -> Int {
+    private static func getUniqueIdentifier() -> Int {
        // dont need to type Card as we are in Type Card
         //Card.identifierFactory+=1
         identifierFactory+=1

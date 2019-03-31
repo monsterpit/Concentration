@@ -5,17 +5,19 @@
 //  Created by MB on 3/25/19.
 //  Copyright © 2019 MB. All rights reserved.
 //
-// if we are doing lots of work then create a function instead of computed property
-// else use it as its lightweight property
+
 import Foundation
 
 
 class Concentration
 {
-    var cards = [Card]()
+    // As to be public else contration wont know how to use cards
+    // As we only want to get value of cards and flipping cards and all is Concentration responsibility
+    private(set) var cards = [Card]()
     
+    // private we dont want any1 to know and think what it does
     //Computed Property with get and set
-    var indexOfOneAndOnlyFaceUpCard : Int?{
+    private var indexOfOneAndOnlyFaceUpCard : Int?{
         get{
             var foundIndex : Int?
             for index in cards.indices{
@@ -31,19 +33,16 @@ class Concentration
             }
             return foundIndex
         }
-        // if you dont do set(newValue) the local Variable for set default to "newValue"
-       // set(newValue){
-        // local variable name is upon you to choose
-        // set(index){
+
           set{
-            // turning all cards face down when indexOfOneAndOnlyFaceUpCard is set excluding the card that is selected
+
             for index in cards.indices{
                 cards[index].isFaceUp = (index==newValue)
             }
         }
     }
     
-    func chooseCard(at index : Int){
+    private func chooseCard(at index : Int){
         //checking if cards aint matched
         if !cards[index].isMatched{
             
@@ -56,22 +55,9 @@ class Concentration
                 }
                 // turning second card up irrespective of if itsd matched or not
                 cards[index].isFaceUp = true
-                
-                //setting indexOfOneAndOnlyFaceUpCard to nil as 2 cards are up now
-                // we dont need it anymore as it is taken care in get of computed property of indexOfOneAndOnlyFaceUpCard
-                //indexOfOneAndOnlyFaceUpCard = nil
+
             }
             else{
-                // either no cards or 2 cards are faceup
-//                for flipDownIndex in cards.indices{
-//                    cards[flipDownIndex].isFaceUp = false
-//                }
-//
-//                // flipping selected card up
-//                cards[index].isFaceUp = true
-//
-// we dont need above code Has now setting indexOfOneAndOnlyFaceUpCard does this in its computed property set
-                // setting indexOfOneAndOnlyFaceUpCard to indexd of card
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
@@ -79,16 +65,14 @@ class Concentration
     }
     
  
-    
+    // initializer can also be made private but we need it to creates array of cards to let it be as it is
     init(numberOfPairsOfCards : Int){
         for _ in 1...numberOfPairsOfCards{
             
             let card = Card()
             cards += [card,card]
         }
-        
-        //TODO: Shuffle the cards
-        // MARK: Shuffle the cards
+
         for cardIndex in cards.indices{
             let randomIndex = Int(arc4random_uniform(UInt32(cards.count)))
             (cards[cardIndex],cards[randomIndex]) = (cards[randomIndex],cards[cardIndex])
