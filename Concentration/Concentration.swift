@@ -11,11 +11,8 @@ import Foundation
 
 class Concentration
 {
-    // As to be public else contration wont know how to use cards
-    // As we only want to get value of cards and flipping cards and all is Concentration responsibility
     private(set) var cards = [Card]()
-    
-    // private we dont want any1 to know and think what it does
+
     //Computed Property with get and set
     private var indexOfOneAndOnlyFaceUpCard : Int?{
         get{
@@ -64,11 +61,9 @@ class Concentration
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
-
     }
     
- 
-    // initializer can also be made private but we need it to creates array of cards to let it be as it is
+
     init(numberOfPairsOfCards : Int){
         
         assert(numberOfPairsOfCards>0,"Concentration.init(\(numberOfPairsOfCards)) : you must have atleast one pair of cards")

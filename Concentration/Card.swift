@@ -14,12 +14,11 @@ import Foundation
 
 struct Card{
     
-    // definitely public as we want to now property or state of card
     var isFaceUp = false
     var isMatched = false
     var identifier : Int
     
-    // private as identifier is internal implementation
+
     private static var identifierFactory = 0
     
     //Static Methods are sent to Type
@@ -29,9 +28,7 @@ struct Card{
         identifierFactory+=1
         return identifierFactory
     }
-    
-    
-    
+            
     //init tends to have same external and internal names
     init(){
         self.identifier = Card.getUniqueIdentifier()

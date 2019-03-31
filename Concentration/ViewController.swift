@@ -10,25 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    // Model are generally public but here its private as it is dependent on numberOfPairsOfCards which has cardButtons aint public and is done in Interface Builder
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     
     var numberOfPairsOfCards : Int {
         return (cardButtons.count+1)/2
     }
     
-    // as we dont want anyone to set flipcount but surely can see what its value is
     private(set) var flipCount : Int = 0 {
         didSet{
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
-    //IBOutlets and IBActions are generally private as they are internal implementations of UI thats what viewcontoller does
+
     @IBOutlet private var cardButtons: [UIButton]!
     
     @IBOutlet private weak var flipCountLabel: UILabel!
-    
-    
+   
     
     @IBAction private func touchCard(_ sender: UIButton) {
         flipCount+=1
@@ -45,7 +42,6 @@ class ViewController: UIViewController {
         
     }
     
-    // will be private as its logic on how to udate view
     private func updateViewFromModel(){
         
         for index in cardButtons.indices
@@ -66,13 +62,8 @@ class ViewController: UIViewController {
 //                exit(-1)
 //            }
         }
-        
-
-
-
     }
-    // making private and theen thinking what should be private or not for future implemenation
-    // all emoji stuffs are private but we can have emoji public API to have control on what to display
+    
     private var emojiChoices = ["👻","🎃","😈","🍭","😱","🙀","🍎","🦇"]
     
     private var emoji = [Int:String]()
@@ -81,7 +72,7 @@ class ViewController: UIViewController {
 
         if emoji[card.identifier] == nil, emojiChoices.count>0{
 
-                let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+                let randomIndex = emojiChoices.count.arc4random
 
                 emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
@@ -90,4 +81,17 @@ class ViewController: UIViewController {
     }
     
 }
-
+//MARK:- extension
+extension Int{
+    var arc4random : Int {
+        if self > 0 {
+        return Int(arc4random_uniform(UInt32(self)))
+        }
+        else if self < 0{
+            return -Int(arc4random_uniform(UInt32(abs(self))))
+        }
+        else{
+            return 0
+        }
+    }
+}
