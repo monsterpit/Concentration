@@ -25,7 +25,8 @@ struct Card : Hashable{
     
     var isFaceUp = false
     var isMatched = false
-    var identifier : Int
+    // due to Card being Hashable now we can now make identifier private now which make code much cleaner
+    private var identifier : Int
     
     
     private static var identifierFactory = 0
