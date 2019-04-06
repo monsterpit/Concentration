@@ -81,6 +81,7 @@ default : print("other")
 //Multiple lines allowed
 //Each case in a switch can be multiple lines and does NOT fall through to the next case
 
+// by default behaviour of swift is that case breaks automatically to execute next case we must use "fallthrough"
 otherItem = FastFoodMenuItem.fries(size: FryOrderSize.large)
 switch otherItem {
 case .hamburger:
@@ -88,6 +89,7 @@ case .hamburger:
 case .fries:
     print("Fries")
     print("yummy")
+    fallthrough
 case .drink: print("drink")
 case .cookie:
     print("cookie")

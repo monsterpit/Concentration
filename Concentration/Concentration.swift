@@ -9,7 +9,7 @@
 import Foundation
 
 
-class Concentration
+struct Concentration
 {
     private(set) var cards = [Card]()
 
@@ -39,7 +39,7 @@ class Concentration
         }
     }
     
-     func chooseCard(at index : Int){
+     mutating func chooseCard(at index : Int){
         //MARK:- Assert
         assert(cards.indices.contains(index),"Concentration.chooseCard(at \(index)): choosen index not in the cards")
         
