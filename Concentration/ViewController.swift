@@ -63,28 +63,19 @@ class ViewController: UIViewController {
 //            }
         }
     }
-    
-  //  private var emojiChoices = ["👻","🎃","😈","🍭","😱","🙀","🍎","🦇"]
-    //Using String instead of Array
+
     private var emojiChoices = "👻🎃😈🍭😱🙀🍎🦇"
     
     //private var emoji = [Int:String]()
-    //Type 'Card' does not conform to protocol 'Hashable'
+
     private var emoji = [Card:String]()
     
     private func emoji(for card : Card)-> String{
-        //Making card hashable rather than having to check for card.identifier
-  //changing card.identifier to card
-//cannot subscript a value of type '[Int : String]' with an index of type 'Card'
+
         if emoji[card] == nil, emojiChoices.count>0{
-            
-                //let randomIndex = emojiChoices.count.arc4random
-            
+     
             let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
-                //Cannot convert value of type 'Int' to expected argument type 'String.Index'
-            
-//                emoji[card] = emojiChoices.remove(at: randomStringIndex)
-            //Cannot assign value of type 'Character' to type 'String?'
+
              emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
         }
 
