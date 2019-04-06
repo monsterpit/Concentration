@@ -214,9 +214,142 @@ func
 \f3 ()\{\}\
 \
 Dictionary is then declared like this : Dictionary<key: Hashable,Value>\
-This restricts keys to be things that conform to Hashable(there's no restriction on values)
-\f2 \
+This restricts keys to be things that conform to Hashable(there's no restriction on values)\
 \
+\
+\ul Advanced use of Protocols\
+\
+\ulnone Multiple inheritance with protocol\
+CountableRange implements many protocols, but here are a couple of important ones ...\
+Sequence - makeIterator(and thus supports \ul for in\ulnone )\
+Collection - subscripting(i.e. []) ,index(offsetBy:),index(of:),etc.\
+\
+Why do it this way?\
+Because Array, for example also implements these protocols.\
+So now Apple can create generic code that operates on a collection and it will work on both!\
+Dictionary is also a Collection, as is Set and String.\
+\
+And
+\f2  
+\f3 they
+\f2  
+\f3 dont
+\f2  
+\f3 all
+\f2  
+\f3 just
+\f2  
+\f3 inherit
+\f2  
+\f3 the
+\f2  
+\f3 fact
+\f2  
+\f3 that
+\f2  
+\f3 they
+\f2  
+\f3 implement
+\f2  
+\f3 the
+\f2  
+\f3 methods
+\f2  
+\f3 in
+\f2  
+\f3 Collection,they
+\f2  
+\f3 actually
+\f2  
+\f3 inherit
+\f2  
+\f3 an
+\f2  
+\f3 implementation
+\f2  
+\f3 of
+\f2  
+\f3 many of the methods in collections\
+\
+for protocol it is possible is provide default implementation of methods this makes use possible to implement index(of:) for all of this classes in 1 place.So thats why think it has a multiple inheritance because it actually inherit implementations\
+So where do we put this protocols ??? we put those in extension of protocol\
+\
+Using extension to provide implementation\
+we said that protocol implementation is provided by implementing types(struct,enum,class)
+\f2 \
+
+\f3 However,an
+\f2  
+\f3 extension
+\f2  
+\f3 can
+\f2  
+\f3 be
+\f2  
+\f3 used
+\f2  
+\f3 to
+\f2  
+\f3 add
+\f2  
+\f3 default
+\f2  
+\f3 implementation
+\f2  
+\f3 to
+\f2  
+\f3 a
+\f2  
+\f3 protocol
+\f2 \
+
+\f3 Since
+\f2  
+\f3 there's
+\f2  
+\f3 no
+\f2  
+\f3 storage
+\f2  
+\f3 said
+\f2  
+\f3 implementation
+\f2  
+\f3 has
+\f2  
+\f3 to
+\f2  
+\f3 be in terms of other API in the protocol\
+(and any API in any protocol that protocol inherits from,of course)\
+\
+For example for the Sequence protocol you really only need to implement makeIterator.(An iterator implements the IteratorProtcol which just has the method next())\
+If you do ,you will automatically get implementations for all these other methods in Sequence:\
+\ul conatins(),forEach(),joined(separator:),min(),max(),even filter() and map(),\ulnone \
+All of these are \ul implemented via an extension to the Sequence protocol.\
+\
+\ulnone This extension (provided by Apple) uses only sequence protocol methods in its implementaion.\
+extension Sequence\{\
+func contains(_ element : Element)->Bool\{\}\
+//etc.\
+\}\
+\
+\ul filter,map are functions that takes closures
+\f2 \ulnone \
 
 \f3 \
-}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 If you redefine an already existing func in protocol in extension it will replaces the default implementation \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+\ul Default implementation is valuable because you can have this really powerful protocols and you have to implement only 1 of the method and you get implementations for all of them and then they are shared among all different classes like Array,String,CountableRange , they get all this implementations they dont have to implement anyone of those they get it for free\
+\
+Generic,Value typing, var vs let, immutability control, constraining things by protocols, extensions of protocols all this things add up to support a kind of programming called functional programming\
+\
+Functional Programming:-\
+\
+\ulnone By combining protocols with generics and extensions (default implementations), you can build code that focuses more on the behavior of data structures than storage.\
+This approach to development is called functional programming\
+It is different than object oriented programming ("its sort of an evolution thereof")\
+Swift supports both object oriented and functional programming paradigms\
+\
+Swift Foundation(dictionary,array,string) those are all built with functional programming model.(mix between haskell (pure functional programming language and java(purely object oriented language))}
