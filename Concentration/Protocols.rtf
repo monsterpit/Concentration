@@ -182,6 +182,10 @@ This is enforced by requiring that a Dictionary's Keys implement the hasble prot
 her's what that protocol looks like..\
 \
 
+\b Hashable is followed  by Equatable because Hashable (hashtable when you hash something it is likely to be an unique hash but it is not guaranteed) so you have to follow it up with == to see if it is actually to see if 2 things are actually equal
+\b0 \
+\
+
 \b protocol Hashable :Equatable\{\
 var hashValue : Int \{get\}\
 \}

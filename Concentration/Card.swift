@@ -12,13 +12,22 @@ import Foundation
 
 //struct also gets a free init but it initializes each and every instance variables
 
-struct Card{
+//making card hashable
+struct Card : Hashable{
+    
+    // HashValue for Hashable
+    var hashValue: Int { return identifier }
+    
+    //Equatable to actually check if 2 values are equal or not
+    static func == (lhs: Card, rhs: Card) -> Bool{
+        return lhs.identifier == rhs.identifier
+    }
     
     var isFaceUp = false
     var isMatched = false
     var identifier : Int
     
-
+    
     private static var identifierFactory = 0
     
     //Static Methods are sent to Type
