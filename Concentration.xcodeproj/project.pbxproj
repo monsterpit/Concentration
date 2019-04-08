@@ -16,6 +16,7 @@
 		2C0F44CC2248EF4B00E468FC /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F44CB2248EF4B00E468FC /* Card.swift */; };
 		2C6F6F732250EC850018E723 /* Extensions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6F6F722250EC850018E723 /* Extensions.rtf */; };
 		2C6F6F9322511DDA0018E723 /* Protocols.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2C6F6F9222511DDA0018E723 /* Protocols.rtf */; };
+		2C79A7A7225BB8C300B620FC /* FunctionTypes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2C79A7A6225BB8C300B620FC /* FunctionTypes.rtf */; };
 		2C7F68402258A10A0057E51D /* ARC.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2C7F683F2258A10A0057E51D /* ARC.rtf */; };
 		2C7F68422258A34B0057E51D /* ARC.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 2C7F68412258A34B0057E51D /* ARC.pdf */; };
 		2CBA3DB822592E15002F37A1 /* String.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2CBA3DB722592E15002F37A1 /* String.rtf */; };
@@ -34,6 +35,7 @@
 		2C0F44CB2248EF4B00E468FC /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2C6F6F722250EC850018E723 /* Extensions.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Extensions.rtf; sourceTree = "<group>"; };
 		2C6F6F9222511DDA0018E723 /* Protocols.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Protocols.rtf; sourceTree = "<group>"; };
+		2C79A7A6225BB8C300B620FC /* FunctionTypes.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = FunctionTypes.rtf; sourceTree = "<group>"; };
 		2C7F683F2258A10A0057E51D /* ARC.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ARC.rtf; sourceTree = "<group>"; };
 		2C7F68412258A34B0057E51D /* ARC.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ARC.pdf; sourceTree = "<group>"; };
 		2CBA3DB722592E15002F37A1 /* String.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = String.rtf; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				2C7F68412258A34B0057E51D /* ARC.pdf */,
 				2CBA3DB722592E15002F37A1 /* String.rtf */,
 				2CBA3DB922593F87002F37A1 /* NSAttributedStrings.rtf */,
+				2C79A7A6225BB8C300B620FC /* FunctionTypes.rtf */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				2C7F68402258A10A0057E51D /* ARC.rtf in Resources */,
 				2C6F6F732250EC850018E723 /* Extensions.rtf in Resources */,
 				2C0F44BC2248C52300E468FC /* Main.storyboard in Resources */,
+				2C79A7A7225BB8C300B620FC /* FunctionTypes.rtf in Resources */,
 				2C7F68422258A34B0057E51D /* ARC.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
