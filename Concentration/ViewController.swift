@@ -18,7 +18,16 @@ class ViewController: UIViewController {
     
     private(set) var flipCount : Int = 0 {
         didSet{
-            flipCountLabel.text = "Flips: \(flipCount)"
+            
+            //creating NSAttribute
+            let attributes : [NSAttributedString.Key: Any] = [ .strokeWidth : 5,.strokeColor: #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)]
+            
+            //creating NSAttributedString
+            let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+           // flipCountLabel.text = "Flips: \(flipCount)"
+            
+            //setting NSAtrributedString
+            flipCountLabel.attributedText = attributedString
         }
     }
 
