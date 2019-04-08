@@ -16,24 +16,35 @@ class ViewController: UIViewController {
         return (cardButtons.count+1)/2
     }
     
+    //when you initialize var it does not invoke didSet
+    //only later setting some value invokes didset
     private(set) var flipCount : Int = 0 {
         didSet{
-            
-            //creating NSAttribute
-            let attributes : [NSAttributedString.Key: Any] = [ .strokeWidth : 5,.strokeColor: #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)]
-            
-            //creating NSAttributedString
-            let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
-           // flipCountLabel.text = "Flips: \(flipCount)"
-            
-            //setting NSAtrributedString
-            flipCountLabel.attributedText = attributedString
+            updateFlipCountLabel()
         }
     }
 
+    
+    private func updateFlipCountLabel(){
+        //creating NSAttribute
+        let attributes : [NSAttributedString.Key: Any] = [ .strokeWidth : 5,.strokeColor: #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)]
+        
+        //creating NSAttributedString
+        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+        // flipCountLabel.text = "Flips: \(flipCount)"
+        
+        //setting NSAtrributedString
+        flipCountLabel.attributedText = attributedString
+    }
     @IBOutlet private var cardButtons: [UIButton]!
     
-    @IBOutlet private weak var flipCountLabel: UILabel!
+    //iOS makes connection with Label wehn we have IBOutlet so we can use didSet
+    @IBOutlet private weak var flipCountLabel: UILabel!{
+        //didSet gets called when Outlet gets connected by iOS
+        didSet{
+            updateFlipCountLabel()
+        }
+    }
    
     
     @IBAction private func touchCard(_ sender: UIButton) {
