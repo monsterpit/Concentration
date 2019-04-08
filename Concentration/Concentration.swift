@@ -16,19 +16,24 @@ struct Concentration
     //Computed Property with get and set
     private var indexOfOneAndOnlyFaceUpCard : Int?{
         get{
-            var foundIndex : Int?
-            for index in cards.indices{
-                //checking  if any cards is faceUp and for 2 or 0 cards face up it returns nil else it returns index
-                if cards[index].isFaceUp {
-                    if foundIndex == nil{
-                        foundIndex = index
-                    }
-                    else{
-                        foundIndex = nil
-                    }
-                }
-            }
-            return foundIndex
+            
+            let faceUpCardsIndices = cards.indices.filter({cards[$0].isFaceUp })
+            
+            return faceUpCardsIndices.count == 1 ? faceUpCardsIndices.first : nil
+            
+//            var foundIndex : Int?
+//            for index in cards.indices{
+//                //checking  if any cards is faceUp and for 2 or 0 cards face up it returns nil else it returns index
+//                if cards[index].isFaceUp {
+//                    if foundIndex == nil{
+//                        foundIndex = index
+//                    }
+//                    else{
+//                        foundIndex = nil
+//                    }
+//                }
+//            }
+//            return foundIndex
         }
 
           set{
