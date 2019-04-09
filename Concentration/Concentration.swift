@@ -17,9 +17,13 @@ struct Concentration
     private var indexOfOneAndOnlyFaceUpCard : Int?{
         get{
             
-            let faceUpCardsIndices = cards.indices.filter({cards[$0].isFaceUp })
+           // let ch = "hello".oneAndOnly // return nil has it has more than 1 elements
             
-            return faceUpCardsIndices.count == 1 ? faceUpCardsIndices.first : nil
+            return cards.indices.filter({cards[$0].isFaceUp }).oneAndOnly
+            
+//            let faceUpCardsIndices = cards.indices.filter({cards[$0].isFaceUp }).oneAndOnly
+            
+//            return faceUpCardsIndices.count == 1 ? faceUpCardsIndices.first : nil
             
 //            var foundIndex : Int?
 //            for index in cards.indices{
@@ -84,5 +88,13 @@ struct Concentration
             (cards[cardIndex],cards[randomIndex]) = (cards[randomIndex],cards[cardIndex])
         }
         
+    }
+}
+
+extension Collection{
+    // Element is generic type of Collection
+    var oneAndOnly : Element?{
+        //since count and first collection method we can use them
+        return count == 1 ? first : nil
     }
 }
